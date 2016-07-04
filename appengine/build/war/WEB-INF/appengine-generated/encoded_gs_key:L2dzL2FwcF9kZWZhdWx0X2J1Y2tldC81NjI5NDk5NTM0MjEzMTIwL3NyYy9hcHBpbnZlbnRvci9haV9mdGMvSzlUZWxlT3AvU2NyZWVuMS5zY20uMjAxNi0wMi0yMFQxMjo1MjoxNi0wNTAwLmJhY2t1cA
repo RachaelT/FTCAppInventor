@@ -1,0 +1,4 @@
+#|
+$JSON
+{"YaVersion":"145","Source":"Form","Properties":{"$Name":"Screen1","$Type":"Form","$Version":"19","AppName":"K9TeleOp","Title":"Screen1","Uuid":"0","$Components":[{"$Name":"FtcRobotController1","$Type":"FtcRobotController","$Version":"3","Uuid":"-2038499892"},{"$Name":"FtcDcMotorRight","$Type":"FtcDcMotor","$Version":"2","DeviceName":"motor_2","Uuid":"1862869718"},{"$Name":"FtcDcMotorLeft","$Type":"FtcDcMotor","$Version":"2","DeviceName":"motor_1","Uuid":"-1399203900"},{"$Name":"FtcServoClaw","$Type":"FtcServo","$Version":"1","DeviceName":"servo_6","Uuid":"535398410"},{"$Name":"FtcServoArm","$Type":"FtcServo","$Version":"1","DeviceName":"servo_1","Uuid":"-208643422"},{"$Name":"FtcOpModeK9TeleOp","$Type":"FtcOpMode","$Version":"2","OpModeName":"K9TeleOp","Uuid":"-1585492297"},{"$Name":"FtcGamepad1","$Type":"FtcGamepad","$Version":"2","Uuid":"-2096896423"}]}}
+|#

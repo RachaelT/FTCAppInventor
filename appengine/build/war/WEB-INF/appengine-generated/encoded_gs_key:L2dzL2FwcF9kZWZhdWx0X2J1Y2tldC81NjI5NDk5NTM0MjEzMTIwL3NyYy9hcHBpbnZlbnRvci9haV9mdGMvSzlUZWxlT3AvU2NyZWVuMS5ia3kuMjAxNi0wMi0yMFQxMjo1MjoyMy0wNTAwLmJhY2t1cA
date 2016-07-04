@@ -1,0 +1,938 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="global_declaration" id="1" inline="false" x="50" y="3">
+    <field name="NAME">ARM_MIN_RANGE</field>
+    <value name="VALUE">
+      <block type="math_number" id="2">
+        <field name="NUM">0.2</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="3" inline="false" x="49" y="43">
+    <field name="NAME">ARM_MAX_RANGE</field>
+    <value name="VALUE">
+      <block type="math_number" id="4">
+        <field name="NUM">0.9</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="5" inline="false" x="46" y="85">
+    <field name="NAME">CLAW_MIN_RANGE</field>
+    <value name="VALUE">
+      <block type="math_number" id="6">
+        <field name="NUM">0.2</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="7" inline="false" x="51" y="125">
+    <field name="NAME">CLAW_MAX_RANGE</field>
+    <value name="VALUE">
+      <block type="math_number" id="8">
+        <field name="NUM">0.7</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="9" inline="false" x="53" y="205">
+    <field name="NAME">armPosition</field>
+    <value name="VALUE">
+      <block type="math_number" id="10">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="11" inline="false" x="51" y="252">
+    <field name="NAME">armDelta</field>
+    <value name="VALUE">
+      <block type="math_number" id="12">
+        <field name="NUM">0.1</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="13" inline="false" x="59" y="346">
+    <field name="NAME">clawPosition</field>
+    <value name="VALUE">
+      <block type="math_number" id="14">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="15" inline="false" x="58" y="391">
+    <field name="NAME">clawDelta</field>
+    <value name="VALUE">
+      <block type="math_number" id="16">
+        <field name="NUM">0.1</field>
+      </block>
+    </value>
+  </block>
+  <block type="component_event" id="17" x="63" y="456">
+    <mutation component_type="FtcOpMode" instance_name="FtcOpModeK9TeleOp" event_name="Init"></mutation>
+    <field name="COMPONENT_SELECTOR">FtcOpModeK9TeleOp</field>
+    <statement name="DO">
+      <block type="component_set_get" id="18" inline="false">
+        <mutation component_type="FtcDcMotor" set_or_get="set" property_name="Direction" is_generic="false" instance_name="FtcDcMotorLeft"></mutation>
+        <field name="COMPONENT_SELECTOR">FtcDcMotorLeft</field>
+        <field name="PROP">Direction</field>
+        <value name="VALUE">
+          <block type="component_set_get" id="19">
+            <mutation component_type="FtcDcMotor" set_or_get="get" property_name="Direction_REVERSE" is_generic="false" instance_name="FtcDcMotorLeft"></mutation>
+            <field name="COMPONENT_SELECTOR">FtcDcMotorLeft</field>
+            <field name="PROP">Direction_REVERSE</field>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="20" inline="false">
+            <field name="VAR">global armPosition</field>
+            <value name="VALUE">
+              <block type="math_number" id="21">
+                <field name="NUM">0.2</field>
+              </block>
+            </value>
+            <next>
+              <block type="lexical_variable_set" id="22" inline="false">
+                <field name="VAR">global clawPosition</field>
+                <value name="VALUE">
+                  <block type="math_number" id="23">
+                    <field name="NUM">0.2</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="24" x="63" y="602">
+    <mutation component_type="FtcOpMode" instance_name="FtcOpModeK9TeleOp" event_name="Loop"></mutation>
+    <field name="COMPONENT_SELECTOR">FtcOpModeK9TeleOp</field>
+    <statement name="DO">
+      <block type="local_declaration_statement" id="25" inline="false">
+        <mutation>
+          <localname name="throttle"></localname>
+          <localname name="direction"></localname>
+        </mutation>
+        <field name="VAR0">throttle</field>
+        <field name="VAR1">direction</field>
+        <value name="DECL0">
+          <block type="math_neg" id="26" inline="false">
+            <field name="OP">NEG</field>
+            <value name="NUM">
+              <block type="component_set_get" id="27">
+                <mutation component_type="FtcGamepad" set_or_get="get" property_name="LeftStickY" is_generic="false" instance_name="FtcGamepad1"></mutation>
+                <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+                <field name="PROP">LeftStickY</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="DECL1">
+          <block type="component_set_get" id="28">
+            <mutation component_type="FtcGamepad" set_or_get="get" property_name="LeftStickX" is_generic="false" instance_name="FtcGamepad1"></mutation>
+            <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+            <field name="PROP">LeftStickX</field>
+          </block>
+        </value>
+        <statement name="STACK">
+          <block type="local_declaration_statement" id="29" inline="false">
+            <mutation>
+              <localname name="right"></localname>
+              <localname name="left"></localname>
+            </mutation>
+            <field name="VAR0">right</field>
+            <field name="VAR1">left</field>
+            <value name="DECL0">
+              <block type="math_subtract" id="30" inline="true">
+                <value name="A">
+                  <block type="lexical_variable_get" id="31">
+                    <field name="VAR">throttle</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="lexical_variable_get" id="32">
+                    <field name="VAR">direction</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="DECL1">
+              <block type="math_add" id="33" inline="true">
+                <mutation items="2"></mutation>
+                <value name="NUM0">
+                  <block type="lexical_variable_get" id="34">
+                    <field name="VAR">throttle</field>
+                  </block>
+                </value>
+                <value name="NUM1">
+                  <block type="lexical_variable_get" id="35">
+                    <field name="VAR">direction</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="STACK">
+              <block type="lexical_variable_set" id="36" inline="false">
+                <field name="VAR">right</field>
+                <value name="VALUE">
+                  <block type="component_method" id="37" inline="false">
+                    <mutation component_type="FtcRobotController" method_name="RangeClip" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                    <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                    <value name="ARG0">
+                      <block type="lexical_variable_get" id="38">
+                        <field name="VAR">right</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="math_number" id="39">
+                        <field name="NUM">-1</field>
+                      </block>
+                    </value>
+                    <value name="ARG2">
+                      <block type="math_number" id="40">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="lexical_variable_set" id="41" inline="false">
+                    <field name="VAR">left</field>
+                    <value name="VALUE">
+                      <block type="component_method" id="42" inline="false">
+                        <mutation component_type="FtcRobotController" method_name="RangeClip" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                        <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                        <value name="ARG0">
+                          <block type="lexical_variable_get" id="43">
+                            <field name="VAR">left</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="math_number" id="44">
+                            <field name="NUM">-1</field>
+                          </block>
+                        </value>
+                        <value name="ARG2">
+                          <block type="math_number" id="45">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lexical_variable_set" id="46" inline="false">
+                        <field name="VAR">right</field>
+                        <value name="VALUE">
+                          <block type="procedures_callreturn" id="47" inline="false">
+                            <mutation name="scaleInput">
+                              <arg name="dVal"></arg>
+                            </mutation>
+                            <field name="PROCNAME">scaleInput</field>
+                            <value name="ARG0">
+                              <block type="lexical_variable_get" id="48">
+                                <field name="VAR">right</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lexical_variable_set" id="49" inline="false">
+                            <field name="VAR">left</field>
+                            <value name="VALUE">
+                              <block type="procedures_callreturn" id="50" inline="false">
+                                <mutation name="scaleInput">
+                                  <arg name="dVal"></arg>
+                                </mutation>
+                                <field name="PROCNAME">scaleInput</field>
+                                <value name="ARG0">
+                                  <block type="lexical_variable_get" id="51">
+                                    <field name="VAR">left</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="52" inline="false">
+                                <mutation component_type="FtcDcMotor" set_or_get="set" property_name="Power" is_generic="false" instance_name="FtcDcMotorRight"></mutation>
+                                <field name="COMPONENT_SELECTOR">FtcDcMotorRight</field>
+                                <field name="PROP">Power</field>
+                                <value name="VALUE">
+                                  <block type="lexical_variable_get" id="53">
+                                    <field name="VAR">right</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_set_get" id="54" inline="false">
+                                    <mutation component_type="FtcDcMotor" set_or_get="set" property_name="Power" is_generic="false" instance_name="FtcDcMotorLeft"></mutation>
+                                    <field name="COMPONENT_SELECTOR">FtcDcMotorLeft</field>
+                                    <field name="PROP">Power</field>
+                                    <value name="VALUE">
+                                      <block type="lexical_variable_get" id="55">
+                                        <field name="VAR">left</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="controls_if" id="56" inline="false">
+                                        <value name="IF0">
+                                          <block type="component_set_get" id="57">
+                                            <mutation component_type="FtcGamepad" set_or_get="get" property_name="A" is_generic="false" instance_name="FtcGamepad1"></mutation>
+                                            <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+                                            <field name="PROP">A</field>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="lexical_variable_set" id="58" inline="false">
+                                            <field name="VAR">global armPosition</field>
+                                            <value name="VALUE">
+                                              <block type="math_add" id="59" inline="true">
+                                                <mutation items="2"></mutation>
+                                                <value name="NUM0">
+                                                  <block type="lexical_variable_get" id="60">
+                                                    <field name="VAR">global armPosition</field>
+                                                  </block>
+                                                </value>
+                                                <value name="NUM1">
+                                                  <block type="lexical_variable_get" id="61">
+                                                    <field name="VAR">global armDelta</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="controls_if" id="62" inline="false">
+                                            <value name="IF0">
+                                              <block type="component_set_get" id="63">
+                                                <mutation component_type="FtcGamepad" set_or_get="get" property_name="Y" is_generic="false" instance_name="FtcGamepad1"></mutation>
+                                                <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+                                                <field name="PROP">Y</field>
+                                              </block>
+                                            </value>
+                                            <statement name="DO0">
+                                              <block type="lexical_variable_set" id="64" inline="false">
+                                                <field name="VAR">global armPosition</field>
+                                                <value name="VALUE">
+                                                  <block type="math_subtract" id="65" inline="true">
+                                                    <value name="A">
+                                                      <block type="lexical_variable_get" id="66">
+                                                        <field name="VAR">global armPosition</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <block type="lexical_variable_get" id="67">
+                                                        <field name="VAR">global armDelta</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="controls_if" id="68" inline="false">
+                                                <value name="IF0">
+                                                  <block type="component_set_get" id="69">
+                                                    <mutation component_type="FtcGamepad" set_or_get="get" property_name="X" is_generic="false" instance_name="FtcGamepad1"></mutation>
+                                                    <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+                                                    <field name="PROP">X</field>
+                                                  </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                  <block type="lexical_variable_set" id="70" inline="false">
+                                                    <field name="VAR">global clawPosition</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_add" id="71" inline="true">
+                                                        <mutation items="2"></mutation>
+                                                        <value name="NUM0">
+                                                          <block type="lexical_variable_get" id="72">
+                                                            <field name="VAR">global clawPosition</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="NUM1">
+                                                          <block type="lexical_variable_get" id="73">
+                                                            <field name="VAR">global clawDelta</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="controls_if" id="74" inline="false">
+                                                    <value name="IF0">
+                                                      <block type="component_set_get" id="75">
+                                                        <mutation component_type="FtcGamepad" set_or_get="get" property_name="B" is_generic="false" instance_name="FtcGamepad1"></mutation>
+                                                        <field name="COMPONENT_SELECTOR">FtcGamepad1</field>
+                                                        <field name="PROP">B</field>
+                                                      </block>
+                                                    </value>
+                                                    <statement name="DO0">
+                                                      <block type="lexical_variable_set" id="76" inline="false">
+                                                        <field name="VAR">global clawPosition</field>
+                                                        <value name="VALUE">
+                                                          <block type="math_subtract" id="77" inline="true">
+                                                            <value name="A">
+                                                              <block type="lexical_variable_get" id="78">
+                                                                <field name="VAR">global clawPosition</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="B">
+                                                              <block type="lexical_variable_get" id="79">
+                                                                <field name="VAR">global clawDelta</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="lexical_variable_set" id="80" inline="false">
+                                                        <field name="VAR">global armPosition</field>
+                                                        <value name="VALUE">
+                                                          <block type="component_method" id="81" inline="false">
+                                                            <mutation component_type="FtcRobotController" method_name="RangeClip" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                            <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                            <value name="ARG0">
+                                                              <block type="lexical_variable_get" id="82">
+                                                                <field name="VAR">global armPosition</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="ARG1">
+                                                              <block type="lexical_variable_get" id="83">
+                                                                <field name="VAR">global ARM_MIN_RANGE</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="ARG2">
+                                                              <block type="lexical_variable_get" id="84">
+                                                                <field name="VAR">global ARM_MAX_RANGE</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="lexical_variable_set" id="85" inline="false">
+                                                            <field name="VAR">global clawPosition</field>
+                                                            <value name="VALUE">
+                                                              <block type="component_method" id="86" inline="false">
+                                                                <mutation component_type="FtcRobotController" method_name="RangeClip" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                <value name="ARG0">
+                                                                  <block type="lexical_variable_get" id="87">
+                                                                    <field name="VAR">global clawPosition</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="ARG1">
+                                                                  <block type="lexical_variable_get" id="88">
+                                                                    <field name="VAR">global CLAW_MIN_RANGE</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="ARG2">
+                                                                  <block type="lexical_variable_get" id="89">
+                                                                    <field name="VAR">global CLAW_MAX_RANGE</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="component_set_get" id="90" inline="false">
+                                                                <mutation component_type="FtcServo" set_or_get="set" property_name="Position" is_generic="false" instance_name="FtcServoArm"></mutation>
+                                                                <field name="COMPONENT_SELECTOR">FtcServoArm</field>
+                                                                <field name="PROP">Position</field>
+                                                                <value name="VALUE">
+                                                                  <block type="lexical_variable_get" id="91">
+                                                                    <field name="VAR">global armPosition</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="component_set_get" id="92" inline="false">
+                                                                    <mutation component_type="FtcServo" set_or_get="set" property_name="Position" is_generic="false" instance_name="FtcServoClaw"></mutation>
+                                                                    <field name="COMPONENT_SELECTOR">FtcServoClaw</field>
+                                                                    <field name="PROP">Position</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="lexical_variable_get" id="93">
+                                                                        <field name="VAR">global clawPosition</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="component_method" id="94" inline="false">
+                                                                        <mutation component_type="FtcRobotController" method_name="TelemetryAddTextData" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                        <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                        <value name="ARG0">
+                                                                          <block type="text" id="95">
+                                                                            <field name="TEXT">Text</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="ARG1">
+                                                                          <block type="text" id="96">
+                                                                            <field name="TEXT">*** Robot Data***</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="component_method" id="97" inline="false">
+                                                                            <mutation component_type="FtcRobotController" method_name="TelemetryAddTextData" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                            <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                            <value name="ARG0">
+                                                                              <block type="text" id="98">
+                                                                                <field name="TEXT">arm</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="ARG1">
+                                                                              <block type="text_join" id="99" inline="false">
+                                                                                <mutation items="2"></mutation>
+                                                                                <value name="ADD0">
+                                                                                  <block type="text" id="100">
+                                                                                    <field name="TEXT">arm: </field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <value name="ADD1">
+                                                                                  <block type="math_format_as_decimal" id="101" inline="false">
+                                                                                    <value name="NUM">
+                                                                                      <block type="lexical_variable_get" id="102">
+                                                                                        <field name="VAR">global armPosition</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="PLACES">
+                                                                                      <block type="math_number" id="103">
+                                                                                        <field name="NUM">2</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="component_method" id="104" inline="false">
+                                                                                <mutation component_type="FtcRobotController" method_name="TelemetryAddTextData" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                                <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                                <value name="ARG0">
+                                                                                  <block type="text" id="105">
+                                                                                    <field name="TEXT">claw</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <value name="ARG1">
+                                                                                  <block type="text_join" id="106" inline="false">
+                                                                                    <mutation items="2"></mutation>
+                                                                                    <value name="ADD0">
+                                                                                      <block type="text" id="107">
+                                                                                        <field name="TEXT">claw: </field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="ADD1">
+                                                                                      <block type="math_format_as_decimal" id="108" inline="false">
+                                                                                        <value name="NUM">
+                                                                                          <block type="lexical_variable_get" id="109">
+                                                                                            <field name="VAR">global clawPosition</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="PLACES">
+                                                                                          <block type="math_number" id="110">
+                                                                                            <field name="NUM">2</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="component_method" id="111" inline="false">
+                                                                                    <mutation component_type="FtcRobotController" method_name="TelemetryAddTextData" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                                    <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                                    <value name="ARG0">
+                                                                                      <block type="text" id="112">
+                                                                                        <field name="TEXT">left tgt pwr</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="ARG1">
+                                                                                      <block type="text_join" id="113" inline="false">
+                                                                                        <mutation items="2"></mutation>
+                                                                                        <value name="ADD0">
+                                                                                          <block type="text" id="114">
+                                                                                            <field name="TEXT">left pwr: </field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="ADD1">
+                                                                                          <block type="math_format_as_decimal" id="115" inline="false">
+                                                                                            <value name="NUM">
+                                                                                              <block type="lexical_variable_get" id="116">
+                                                                                                <field name="VAR">left</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="PLACES">
+                                                                                              <block type="math_number" id="117">
+                                                                                                <field name="NUM">2</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="component_method" id="118" inline="false">
+                                                                                        <mutation component_type="FtcRobotController" method_name="TelemetryAddTextData" is_generic="false" instance_name="FtcRobotController1"></mutation>
+                                                                                        <field name="COMPONENT_SELECTOR">FtcRobotController1</field>
+                                                                                        <value name="ARG0">
+                                                                                          <block type="text" id="119">
+                                                                                            <field name="TEXT">right tgt pwr</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="ARG1">
+                                                                                          <block type="text_join" id="120" inline="false">
+                                                                                            <mutation items="2"></mutation>
+                                                                                            <value name="ADD0">
+                                                                                              <block type="text" id="121">
+                                                                                                <field name="TEXT">right pwr: </field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="ADD1">
+                                                                                              <block type="math_format_as_decimal" id="122" inline="false">
+                                                                                                <value name="NUM">
+                                                                                                  <block type="lexical_variable_get" id="123">
+                                                                                                    <field name="VAR">right</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <value name="PLACES">
+                                                                                                  <block type="math_number" id="124">
+                                                                                                    <field name="NUM">2</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defreturn" id="125" inline="false" x="73" y="2467">
+    <mutation>
+      <arg name="dVal"></arg>
+    </mutation>
+    <field name="NAME">scaleInput</field>
+    <field name="VAR0">dVal</field>
+    <value name="RETURN">
+      <block type="local_declaration_expression" id="126" inline="false">
+        <mutation>
+          <localname name="dScale"></localname>
+        </mutation>
+        <field name="VAR0">dScale</field>
+        <value name="DECL0">
+          <block type="math_number" id="127">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="RETURN">
+          <block type="controls_do_then_return" id="128" inline="false">
+            <statement name="STM">
+              <block type="local_declaration_statement" id="129" inline="false">
+                <mutation>
+                  <localname name="scaleArray"></localname>
+                  <localname name="index"></localname>
+                </mutation>
+                <field name="VAR0">scaleArray</field>
+                <field name="VAR1">index</field>
+                <value name="DECL0">
+                  <block type="lists_create_with" id="130" inline="false">
+                    <mutation items="17"></mutation>
+                    <value name="ADD0">
+                      <block type="math_number" id="131">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="math_number" id="132">
+                        <field name="NUM">0.05</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="math_number" id="133">
+                        <field name="NUM">0.09</field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="math_number" id="134">
+                        <field name="NUM">0.1</field>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="math_number" id="135">
+                        <field name="NUM">0.12</field>
+                      </block>
+                    </value>
+                    <value name="ADD5">
+                      <block type="math_number" id="136">
+                        <field name="NUM">0.15</field>
+                      </block>
+                    </value>
+                    <value name="ADD6">
+                      <block type="math_number" id="137">
+                        <field name="NUM">0.18</field>
+                      </block>
+                    </value>
+                    <value name="ADD7">
+                      <block type="math_number" id="138">
+                        <field name="NUM">0.24</field>
+                      </block>
+                    </value>
+                    <value name="ADD8">
+                      <block type="math_number" id="139">
+                        <field name="NUM">0.3</field>
+                      </block>
+                    </value>
+                    <value name="ADD9">
+                      <block type="math_number" id="140">
+                        <field name="NUM">0.36</field>
+                      </block>
+                    </value>
+                    <value name="ADD10">
+                      <block type="math_number" id="141">
+                        <field name="NUM">0.43</field>
+                      </block>
+                    </value>
+                    <value name="ADD11">
+                      <block type="math_number" id="142">
+                        <field name="NUM">0.5</field>
+                      </block>
+                    </value>
+                    <value name="ADD12">
+                      <block type="math_number" id="143">
+                        <field name="NUM">0.6</field>
+                      </block>
+                    </value>
+                    <value name="ADD13">
+                      <block type="math_number" id="144">
+                        <field name="NUM">0.72</field>
+                      </block>
+                    </value>
+                    <value name="ADD14">
+                      <block type="math_number" id="145">
+                        <field name="NUM">0.85</field>
+                      </block>
+                    </value>
+                    <value name="ADD15">
+                      <block type="math_number" id="146">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <value name="ADD16">
+                      <block type="math_number" id="147">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="DECL1">
+                  <block type="math_floor" id="148" inline="false">
+                    <field name="OP">FLOOR</field>
+                    <value name="NUM">
+                      <block type="math_multiply" id="149" inline="true">
+                        <mutation items="2"></mutation>
+                        <value name="NUM0">
+                          <block type="lexical_variable_get" id="150">
+                            <field name="VAR">dVal</field>
+                          </block>
+                        </value>
+                        <value name="NUM1">
+                          <block type="math_number" id="151">
+                            <field name="NUM">16</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="STACK">
+                  <block type="controls_if" id="152" inline="false">
+                    <value name="IF0">
+                      <block type="math_compare" id="153" inline="true">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="lexical_variable_get" id="154">
+                            <field name="VAR">index</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="155">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lexical_variable_set" id="156" inline="false">
+                        <field name="VAR">index</field>
+                        <value name="VALUE">
+                          <block type="math_neg" id="157" inline="false">
+                            <field name="OP">NEG</field>
+                            <value name="NUM">
+                              <block type="lexical_variable_get" id="158">
+                                <field name="VAR">index</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="159" inline="false">
+                        <value name="IF0">
+                          <block type="math_compare" id="160" inline="true">
+                            <field name="OP">GT</field>
+                            <value name="A">
+                              <block type="lexical_variable_get" id="161">
+                                <field name="VAR">index</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="162">
+                                <field name="NUM">16</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="lexical_variable_set" id="163" inline="false">
+                            <field name="VAR">index</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="164">
+                                <field name="NUM">16</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="controls_if" id="165" inline="false">
+                            <mutation else="1"></mutation>
+                            <value name="IF0">
+                              <block type="math_compare" id="166" inline="true">
+                                <field name="OP">LT</field>
+                                <value name="A">
+                                  <block type="lexical_variable_get" id="167">
+                                    <field name="VAR">dVal</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="168">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="lexical_variable_set" id="169" inline="false">
+                                <field name="VAR">dScale</field>
+                                <value name="VALUE">
+                                  <block type="math_neg" id="170" inline="false">
+                                    <field name="OP">NEG</field>
+                                    <value name="NUM">
+                                      <block type="lists_select_item" id="171" inline="false">
+                                        <value name="LIST">
+                                          <block type="lexical_variable_get" id="172">
+                                            <field name="VAR">scaleArray</field>
+                                          </block>
+                                        </value>
+                                        <value name="NUM">
+                                          <block type="math_add" id="173" inline="true">
+                                            <mutation items="2"></mutation>
+                                            <value name="NUM0">
+                                              <block type="lexical_variable_get" id="174">
+                                                <field name="VAR">index</field>
+                                              </block>
+                                            </value>
+                                            <value name="NUM1">
+                                              <block type="math_number" id="175">
+                                                <field name="NUM">1</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </statement>
+                            <statement name="ELSE">
+                              <block type="lexical_variable_set" id="176" inline="false">
+                                <field name="VAR">dScale</field>
+                                <value name="VALUE">
+                                  <block type="lists_select_item" id="177" inline="false">
+                                    <value name="LIST">
+                                      <block type="lexical_variable_get" id="178">
+                                        <field name="VAR">scaleArray</field>
+                                      </block>
+                                    </value>
+                                    <value name="NUM">
+                                      <block type="math_add" id="179" inline="true">
+                                        <mutation items="2"></mutation>
+                                        <value name="NUM0">
+                                          <block type="lexical_variable_get" id="180">
+                                            <field name="VAR">index</field>
+                                          </block>
+                                        </value>
+                                        <value name="NUM1">
+                                          <block type="math_number" id="181">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <value name="VALUE">
+              <block type="lexical_variable_get" id="182">
+                <field name="VAR">dScale</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <yacodeblocks ya-version="145" language-version="19"></yacodeblocks>
+</xml>
